@@ -4,9 +4,9 @@
             <!--当且仅当为true时可以简写,如下的 inline -->
             <Form inline :formData="formData" :modelObj="formSearch"></Form>
             <el-button-group>
-                <el-button type="primary" icon="el-icon-search">搜索</el-button>
+                <el-button icon="el-icon-search">搜索</el-button>
                 <el-button type="primary" icon="el-icon-plus">添加</el-button>
-                <el-button type="primary" icon="el-icon-delete">删除</el-button>
+                <el-button type="danger" icon="el-icon-delete">删除</el-button>
             </el-button-group>
         </div>
         <div class="manager-content">

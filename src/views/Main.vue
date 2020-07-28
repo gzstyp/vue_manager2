@@ -23,6 +23,6 @@
 </script>
 <style scoped>
     .el-header{
-        background-color:#eee;
+        background-color:#409EFF;
     }
 </style>
