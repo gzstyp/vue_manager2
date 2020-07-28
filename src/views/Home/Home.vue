@@ -3,7 +3,14 @@
 </template>
 <script>
     export default {
-        name : "Home"
+        name : "Home",
+        mounted(){
+            this.$http.get('/home/getData').then(data =>{
+                console.info(data);
+            }).catch(err =>{
+                console.info(err);
+            });
+        }
     }
 </script>
 <style scoped>
