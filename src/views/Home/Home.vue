@@ -15,7 +15,7 @@
                 </div>
             </el-card>
             <el-card shadow="hover" style="height:615px;margin-top:10px"><!--右键检查左边的高度 - 290px - 内边距的40px - margin-top:10px m-->
-                鼠标悬浮时显示
+                最新数据
             </el-card>
         </el-col>
         <el-col :span="16">
