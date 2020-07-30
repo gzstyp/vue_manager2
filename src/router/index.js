@@ -12,6 +12,11 @@ const router = new VueRouter({
           path: '/login',/*注意层次结构*/
           name: 'login',
           component : () => import('@/views/Login')/*拼接懒加载*/
+      },
+      {
+          path: '*',
+          name: 'page404',
+          component : () => import('@/views/NotFound')/*拼接懒加载*/
       }
   ]
 });

@@ -49,6 +49,36 @@ export default {
         /*动态添加到路由,router是在登录成功后从那传递进来的,即在登录成功后触发*/
         addMenu(state,router){
             let menus = JSON.parse(sessionStorage.getItem('menus'));//反序列化
+            console.info('menus:'+menus);
+            if(!menus)return;
+            state.menu = menus;//从 sessionStorage 获取或保存是防止用户页面刷新而导致数据丢失
+            //动态拼接添加路由,先定义总体的路由,即
+            let _currentMenu = [
+                {
+                    path : '/',
+                    component : () => import(`@/views/Main`),
+                    children : []//动态添加的都添加到它
+                }
+            ]
+            //循环拼接添加到路由
+            menus.forEach(item => {
+                if(item.children){
+                    item.children = item.children.map(item => {
+                        item.component = () => import(`@/views/${item.url}`);//使用 $ 表示变量,可以拼接字符串|变量,注意用``包裹!
+                        return item;
+                    });
+                    _currentMenu[0].children.push(...item.children);//...表示展开,push的是子页面
+                }else{
+                    item.component = () => import(`@/views/${item.url}`);
+                    _currentMenu[0].children.push(item);//因为没有子页面,所以就直接 push 即可
+                }
+            })
+            console.info('_currentMenu:'+_currentMenu);
+            //this.$router.addRoutes(routes);
+            router.addRoutes(_currentMenu);
+        },
+        getMenu(state,router){
+            let menus = JSON.parse(sessionStorage.getItem('menus'));//反序列化
             if(!menus)return;
             state.menu = menus;//从 sessionStorage 获取或保存是防止用户页面刷新而导致数据丢失
             //动态拼接添加路由,先定义总体的路由,即

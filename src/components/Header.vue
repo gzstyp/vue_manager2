@@ -37,8 +37,7 @@
             logout(){
                 this.$store.commit('clearMenu');
                 this.$store.commit('clearToken');
-                //必须注意这个name，否则vue会提示[vue-router] Route with name '/' does not exist !!!,被炕了N多次!!!
-                this.$router.push({name:'login'});//使用自定义通过name来进行跳转,所以需要给定一个name,采用的是编程式导航,进行页面跳转
+                location.reload();//重新加载页面,也就是刷新!
             }
         }
     }
