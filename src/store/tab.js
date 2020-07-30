@@ -6,7 +6,7 @@ export default {
         tabsList : [
             {
                 path : '/',
-                name : 'home',
+                name : 'home',/*根据此name来进行页面跳转*/
                 label : '首页',
                 icon : 'el-icon-s-home'
 
