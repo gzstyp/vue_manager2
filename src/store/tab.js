@@ -73,45 +73,8 @@ export default {
                 }
             })
             console.info('_currentMenu:'+_currentMenu);
-            //this.$router.options.routes = routes;
             //this.$router.addRoutes(routes);
-            //router.options.routes = routers;
             router.addRoutes(_currentMenu);
-
-            /*let menus = JSON.parse(sessionStorage.getItem('menus'));
-            if(!menus)return;
-            state.menu = menus;
-            let _currentMenu = [
-                {
-                    path : '/',
-                    component : () => import(`@/views/Main`),
-                    children : []
-                }
-            ]
-            for(var index in menus){
-                var object = menus[index];
-                if(object.children){
-                    _currentMenu[0].children.push(object.children);//... 表示展开
-                }else{
-                    _currentMenu[0].children.push(object);
-                }
-            }*/
-            /*menus.forEach(item => {
-                if(item.children){
-                    item.children = item.children.map(item => {
-                        item.component = () => import(`@/views/User`);
-                        return item;
-                    });
-                    _currentMenu[0].children.push(...item.children);//... 表示展开
-                }else{
-                    item.component = () => import(`@/views/User`);
-                    _currentMenu[0].children.push(item);
-                }
-            });*/
-            //this.$router.options.routes = routes;
-            //this.$router.addRoutes(routes);
-            //router.options.routes = routers;
-            //router.addRoutes(routers);
         }
     },
     actions: {
