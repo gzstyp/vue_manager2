@@ -13,7 +13,7 @@ const router = new VueRouter({
           children : [
               {
                   path : '/',
-                  name : 'home',//别名,可以通过别名 name 来进行跳转
+                  name : 'home',//别名,可以通过别名 name 来进行页面跳转
                   component : () => import('@/views/Home/Home')
               },
               {
