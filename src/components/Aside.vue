@@ -45,7 +45,7 @@
         },
         data(){
             return {
-                /*开发时的路由*/
+                /*开发时的路由,如果vue出现了 [vue-router] Route with name '/' does not exist 将其路由注释即可*/
                 asideMenu : [
                     /*{
                         path : '/',
