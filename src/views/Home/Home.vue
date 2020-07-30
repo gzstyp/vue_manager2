@@ -24,7 +24,7 @@
                     <i :class="`${item.icon}`"></i><!--可以拼接字符串-->
                     <div class="detail">
                         <p :style="{'color':item.color,fontSize:'30px'}">￥{{item.value}}</p>
-                        <p :style="{'color':`${item.color}`}">{{item.name}}</p>
+                        <p :style="{'color':`${item.color}`}">{{item.name}}</p><!--使用 $ 表示变量,可以拼接字符串|变量 -->
                     </div>
                 </el-card>
             </div>
