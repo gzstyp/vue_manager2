@@ -13,6 +13,7 @@ export default {
             }
         ]
     },
+    /*mutations [异步]处理菜单数据的功能,也就是使用vuex保存数据再通过vuex把数据传播出去*/
     mutations : {
         selectMenu(state,provider){
             if(provider.name !== 'home'){
