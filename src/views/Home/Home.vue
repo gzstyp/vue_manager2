@@ -20,7 +20,7 @@
         </el-col>
         <el-col :span="16">
             <div class="num">
-                <el-card shadow="hover" v-for="(item,index) in countData" :key="index" :body-style="{display:flex,padding:0}">
+                <el-card shadow="hover" v-for="(item,index) in countData" :key="index" :body-style="{display:'flex',padding:0}">
                     <i :class="`${item.icon}`"></i><!--可以拼接字符串-->
                     <div class="detail">
                         <p :style="{'color':item.color,fontSize:'30px'}">￥{{item.value}}</p>

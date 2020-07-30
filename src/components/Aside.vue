@@ -29,19 +29,25 @@
         /*计算属性*/
         computed : {
             noChildren(){
-                return this.asideMenu.filter(item => !item.children);//无子页面
+                //return this.asideMenu.filter(item => !item.children);
+                return this.menu.filter(item => !item.children);//无子页面,这个 menu 就是 menu()
             },
             hasChildren(){
-                return this.asideMenu.filter(item => item.children);//有子页面
+                //return this.asideMenu.filter(item => item.children);
+                return this.menu.filter(item => item.children);//有子页面,这个 menu 就是 menu()
             },
             isCollapse(){
                 return this.$store.state.tab.isCollapse;/*这个 isCollapse 变量是在 Header 的方法 showHide()｛this.$store.commit('collapseMenu');}赋值的 */
+            },
+            menu(){
+                return this.$store.state.tab.menu;//这个menu是在src/store/tab.js里声明定义的!
             }
         },
         data(){
             return {
+                /*开发时的路由*/
                 asideMenu : [
-                    {
+                    /*{
                         path : '/',
                         name : 'home',
                         label : '首页',
@@ -77,14 +83,14 @@
                                 icon : 'el-icon-setting'
                             }
                         ]
-                    }
+                    }*/
                 ]
             }
         },
         methods : {
             /*点击导航菜单时跳转页面*/
             clickMenu(item){
-                this.$router.push({name : item.name});//自定义通过name来进行跳转,即点击左边的导航菜单进行页面跳转,采用的是函数式编程,当有r时是路由,没有r的是参考路由信息
+                this.$router.push({name : item.name});//使用自定义通过name来进行跳转,即点击左边的导航菜单进行页面跳转,采用的是函数式编程,当有r时是路由,没有r的是参考路由信息
                 this.$store.commit('selectMenu',item);
             }
         }

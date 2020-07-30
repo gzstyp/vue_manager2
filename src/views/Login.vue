@@ -6,7 +6,7 @@
             </div>
             <el-form :model="loginForm" label-width="80px" class="login_form">
                 <el-form-item label="登录账号">
-                    <el-input v-model="loginForm.userName" placeholder="输入登录账号|用户名"/>
+                    <el-input v-model="loginForm.username" placeholder="输入登录账号|用户名"/>
                 </el-form-item>
                 <el-form-item label="登录密码">
                     <el-input type="password" v-model="loginForm.password" placeholder="输入登录密码" />
@@ -25,58 +25,35 @@
         data(){
             return{
                 loginForm :{
-                    userName : 'admin',
-                    password : '1'
-                },
-                asideMenu : [
-                    {
-                        url : '/home',
-                        name : '首页',
-                        icon : 'el-icon-s-home'
-                    },
-                    {
-                        url : '/video',
-                        name : '视频管理',
-                        icon : 'el-icon-video-camera'
-                    },
-                    {
-                        url : '/user',
-                        name : '用户管理',
-                        icon : 'el-icon-user'
-                    },
-                    {
-                        name : '其他页面',
-                        icon : 'el-icon-monitor',
-                        children : [
-                            {
-                                url : '/page1',
-                                name : '页面1',
-                                icon : 'el-icon-present'
-                            },
-                            {
-                                url : '/page2',
-                                name : '页面2',
-                                icon : 'el-icon-set-up'
-                            },
-                            {
-                                url : '/setting',
-                                name : '设置',
-                                icon : 'el-icon-setting'
-                            }
-                        ]
-                    }
-                ]
+                    username : '',
+                    password : ''
+                }
             }
         },
         methods : {
-            login : function (){
-                this.$message.success('登录成功');
-                this.$store.commit('clearMenu');//防止二次登录
+            login : function (){//登录成功后触发动态路由添加
+                this.$http.post('/permission/getMenu',this.loginForm).then(data =>{
+                    if(data.code === 200){
+                        this.$store.commit('clearMenu');//防止二次登录
+                        this.$message.success('登录成功');
+                        this.$store.commit('setMenu',data.data);
+                        this.$store.commit('addMenu',this.$router);//还有一处就是当在页面被刷新后需要重新加载当前的动态路由,也就是在 src/main.js 做处理!!!
+                        setTimeout(() =>{
+                            //必须注意这个name，否则vue会提示[vue-router] Route with name '/' does not exist !!!,被炕了N多次!!!
+                            this.$router.push({name:'home'});//使用自定义通过name来进行跳转,所以需要给定一个name,采用的是编程式导航,进行页面跳转
+                        },2000);
+                    }else{
+                        this.$message.error(data.msg);
+                    }
+                }).catch(err =>{
+                    this.$message.error('连接服务器失败');
+                });
+                /*
                 this.$store.commit('setMenu',this.asideMenu);
                 this.$store.commit('addMenu',this.$router);
                 setTimeout(() =>{
-                    this.$router.push('/home');/*采用的是编程式导航,进行页面跳转*/
-                },2000);
+                    this.$router.push('/home');/!*采用的是编程式导航,进行页面跳转*!/
+                },2000);*/
             }
         },
         created(){

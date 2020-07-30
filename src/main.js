@@ -22,6 +22,6 @@ new Vue({
     store,
     render: h => h(App),
     create(){
-        store.commit(('addMenu',router));
+        store.commit('addMenu',router);//在页面被刷新后需要重新加载当前的动态路由,还有一处就是在 src/views/Login.vue 登录成功后触发
     }
 }).$mount('#app');
