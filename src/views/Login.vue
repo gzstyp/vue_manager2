@@ -14,7 +14,7 @@
             </el-form>
             <el-row type="flex" justify="center" class="btns">
                 <el-button type="primary" @click="login()">登录认证</el-button>
-                <el-button type="info" plain>重置数据</el-button>
+                <el-button type="info" @click="resetData()" plain>重置数据</el-button>
             </el-row>
         </div>
     </div>
@@ -55,6 +55,10 @@
                 setTimeout(() =>{
                     this.$router.push('/home');/!*采用的是编程式导航,进行页面跳转*!/
                 },2000);*/
+            },
+            resetData(){
+                this.loginForm.username = '';
+                this.loginForm.password = '';
             }
         },
         created(){

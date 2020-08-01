@@ -94,6 +94,9 @@
                     }
                 ]
             }
+        },
+        create(){
+            //console.info(window.innerHeight);
         }
     }
 </script>
