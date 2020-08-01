@@ -8,7 +8,7 @@ export default {
             sessionStorage.setItem('token',provider);
         },
         clearToken(state){
-            state.token = ''
+            state.token = '';
             sessionStorage.removeItem('token');
             sessionStorage.clear();
         },
