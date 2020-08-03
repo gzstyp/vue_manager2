@@ -34,6 +34,7 @@
             login : function (){//登录成功后触发动态路由添加
                 this.$http.post('/permission/getMenu',this.loginForm).then(data =>{
                     if(data.code === 200){
+                        sessionStorage.clear();
                         this.$store.commit('clearMenu');//防止二次登录
                         this.$message.success('登录成功');
                         this.$store.commit('setMenu',data.data);
@@ -41,8 +42,8 @@
                         this.$store.commit('addMenu',this.$router);//还有一处就是当在页面被刷新后需要重新加载当前的动态路由,也就是在 src/main.js 做处理!!!
                         setTimeout(() =>{
                             //必须注意这个name，否则vue会提示[vue-router] Route with name '/' does not exist !!!,被炕了N多次!!!
-                            this.$router.push({name:'home'});//使用自定义通过name来进行跳转,所以需要给定一个name,采用的是编程式导航,进行页面跳转
-                        },2000);
+                            this.$router.push({name : 'home'});//使用自定义通过name来进行跳转,所以需要给定一个name,采用的是编程式导航,进行页面跳转
+                        },1000);
                     }else{
                         this.$message.error(data.msg);
                     }

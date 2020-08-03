@@ -14,7 +14,6 @@ export default {
         },
         getToken(state){
             state.token = sessionStorage.getItem('token');
-            console.info('token:'+state.token);
         }
     },
     actions: {}

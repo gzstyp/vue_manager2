@@ -13,6 +13,8 @@ npm run build
 （3）要想刷新后数据不丢失就必须把数据存储在外部，例如：Local Storage、Session Storage、Index DB等。
 这些都是浏览器提供的API，让你可以将数据存储在硬盘上，做持久化存储。
 
+https://www.jianshu.com/p/c2078f6f63b3
+
 解决思路：
 
 办法一：将vuex中的数据直接保存到浏览器缓存中（sessionStorage、localStorage、cookie）

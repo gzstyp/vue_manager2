@@ -34,10 +34,10 @@ export default {
         collapseMenu(state){
             state.isCollapse = !state.isCollapse;
         },
-        /*保存菜单数据*/
+        /*保存菜单数据,用于页面刷新重新获取数据*/
         setMenu (state,provider){
             state.menu = provider;
-            console.info('setMenu:'+provider);
+            sessionStorage.removeItem('menus');
             sessionStorage.setItem('menus',JSON.stringify(provider));//序列化,使用sessionStorage获取或保存是防止用户页面刷新而导致数据丢失
         },
         /*清除菜单,用于退出登录或防止二次登录*/
@@ -49,6 +49,7 @@ export default {
         /*动态添加到路由,router是在登录成功后从那传递进来的,即在登录成功后触发*/
         addMenu(state,router){
             let menus = JSON.parse(sessionStorage.getItem('menus'));//反序列化
+            console.info('addMenu:'+menus);
             if(!menus)return;
             state.menu = menus;//从 sessionStorage 获取或保存是防止用户页面刷新而导致数据丢失
             //动态拼接添加路由,先定义总体的路由,即
@@ -72,7 +73,6 @@ export default {
                     _currentMenu[0].children.push(item);//因为没有子页面,所以就直接 push 即可
                 }
             });
-            console.info('_currentMenu:'+_currentMenu);
             //this.$router.addRoutes(routes);
             router.addRoutes(_currentMenu);
         },
