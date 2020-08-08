@@ -1,6 +1,8 @@
 {
   "name": "vue_manager2",
   "version": "1.0.0",
+  "description": "后端管理系统",
+  "author": "引路者 <444141300@qq.com>",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
