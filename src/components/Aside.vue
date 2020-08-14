@@ -1,6 +1,6 @@
 <template>
     <el-menu :collapse="isCollapse"
-        default-active="2"
+        :default-active="$route.path"
         class="menu-vertical"
         background-color="#545c64"
         text-color="#fff"
